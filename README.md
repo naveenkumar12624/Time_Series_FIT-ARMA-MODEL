@@ -8,9 +8,13 @@ To implement ARMA model in python.
 
 ### ALGORITHM:
 Step 1: Load and prepare the NVIDIA stock prices time series data into a variable.
+
 Step 2: Plot the time series data using Matplotlib with appropriate titles and labels.
+
 Step 3: Calculate and plot the Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) using statsmodels.
+
 Step 4: Fit an ARMA model to the time series data using the specified order (p, d, q) and store the fitted model.
+
 Step 5: Visualize the original time series data alongside the fitted values from the ARMA model in a new plot.
 
 ### PROGRAM:
