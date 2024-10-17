@@ -1,99 +1,91 @@
 # Ex.No:04 FIT ARMA MODEL FOR TIME SERIES
 ### Date: 
-### Name: Syed Abdul Wasih H
-### Reg No: 212221240057
+### Name: Naveen Kumar S
+### Reg No: 212221240033
 
 ### AIM:
 To implement ARMA model in python.
 
 ### ALGORITHM:
-1. Import necessary libraries.
-2. Set up matplotlib settings for figure size.
-3. Define an ARMA(1,1) process with coefficients ar1 and ma1, and generate a sample of 1000 data points using the ArmaProcess class. Plot the generated time series and set the title and x-
-axis limits.
-4. Display the autocorrelation and partial autocorrelation plots for the ARMA(1,1) process using plot_acf and plot_pacf.
-5. Define an ARMA(2,2) process with coefficients ar2 and ma2, and generate a sample of 10000 data points using the ArmaProcess class. Plot the generated time series and set the title and x-
-axis limits.
-6. Display the autocorrelation and partial autocorrelation plots for the ARMA(2,2) process using plot_acf and plot_pacf.
+Step 1: Load and prepare the NVIDIA stock prices time series data into a variable.
+Step 2: Plot the time series data using Matplotlib with appropriate titles and labels.
+Step 3: Calculate and plot the Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) using statsmodels.
+Step 4: Fit an ARMA model to the time series data using the specified order (p, d, q) and store the fitted model.
+Step 5: Visualize the original time series data alongside the fitted values from the ARMA model in a new plot.
 
 ### PROGRAM:
 ```python
-import numpy as np
-import matplotlib.pyplot as plt
-from statsmodels.tsa.arima_process import ArmaProcess
+import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+import matplotlib.pyplot as plt
+import numpy as np
+import warnings
 
-# 1. Import necessary libraries (already done above)
+warnings.filterwarnings('ignore')
 
-# 2. Set up matplotlib settings for figure size
-plt.rcParams['figure.figsize'] = (12, 6)
+# Load dataset
+file_path = 'C:/Users/lenovo/Downloads/archive (2)/NVIDIA/NvidiaStockPrice.csv'  # Update with your actual file path
+data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
 
-# 3. Define an ARMA(1,1) process and generate 1000 data points
-# ARMA(1,1) with coefficients ar1 = 0.5 and ma1 = 0.3
-ar1 = np.array([1, -0.5])  # Note: AR coefficients are defined with a leading 1 for the model equation
-ma1 = np.array([1, 0.3])   # MA coefficients similarly start with 1
-
-arma11_process = ArmaProcess(ar1, ma1)
-sample_arma11 = arma11_process.generate_sample(nsample=1000)
-
-# Plot the generated time series for ARMA(1,1)
-plt.plot(sample_arma11)
-plt.title('Simulated ARMA(1,1) Process')
-plt.xlim(0, 1000)
+# Extract 'Close' prices
+series = data['Close']
+```
+```py
+# Plot the time series data
+plt.figure(figsize=(10, 6))
+plt.plot(series)
+plt.title('NVIDIA Stock Prices')
+plt.xlabel('Date')
+plt.ylabel('Close Price')
 plt.show()
+```
+```py
+# Plot ACF and PACF
+plt.figure(figsize=(12, 6))
+plt.subplot(121)
+plot_acf(series, ax=plt.gca())
+plt.title('Autocorrelation Function (ACF)')
 
-# 4. Display the autocorrelation and partial autocorrelation plots for ARMA(1,1)
-plot_acf(sample_arma11, lags=30)
-plt.title('Autocorrelation of ARMA(1,1) Process')
+plt.subplot(122)
+plot_pacf(series, ax=plt.gca())
+plt.title('Partial Autocorrelation Function (PACF)')
 plt.show()
+```
+```py
+# Fit ARMA model
+# Note: For ARMA, d=0 (difference order should be 0 for ARMA)
+model = ARIMA(series, order=(2, 0, 2))  # Adjust p, d, q values based on ACF and PACF plots
+model_fit = model.fit()
 
-plot_pacf(sample_arma11, lags=30)
-plt.title('Partial Autocorrelation of ARMA(1,1) Process')
-plt.show()
+# Print model summary
+print(model_fit.summary())
 
-# 5. Define an ARMA(2,2) process and generate 10000 data points
-# ARMA(2,2) with coefficients ar2 = [0.75, -0.25] and ma2 = [0.65, 0.35]
-ar2 = np.array([1, -0.75, 0.25])
-ma2 = np.array([1, 0.65, 0.35])
-
-arma22_process = ArmaProcess(ar2, ma2)
-sample_arma22 = arma22_process.generate_sample(nsample=10000)
-
-# Plot the generated time series for ARMA(2,2)
-plt.plot(sample_arma22)
-plt.title('Simulated ARMA(2,2) Process')
-plt.xlim(0, 10000)
-plt.show()
-
-# 6. Display the autocorrelation and partial autocorrelation plots for ARMA(2,2)
-plot_acf(sample_arma22, lags=30)
-plt.title('Autocorrelation of ARMA(2,2) Process')
-plt.show()
-
-plot_pacf(sample_arma22, lags=30)
-plt.title('Partial Autocorrelation of ARMA(2,2) Process')
+# Plot the fitted values
+plt.figure(figsize=(10, 6))
+plt.plot(series, label='Original Series')
+plt.plot(model_fit.fittedvalues, color='red', label='Fitted Values')
+plt.title('Original vs Fitted Values')
+plt.xlabel('Date')
+plt.ylabel('Close Price')
+plt.legend()
 plt.show()
 ```
 
+
 ### OUTPUT:
-# SIMULATED ARMA(1,1) PROCESS:
-![image](https://github.com/user-attachments/assets/c0b78dac-2513-4dde-8806-662ff72dc322)
 
 # Partial Autocorrelation
-![image](https://github.com/user-attachments/assets/4b865320-1db6-4bb5-bdc2-aee06044c09b)
+![download](https://github.com/user-attachments/assets/9801a160-399d-4209-96a7-a739d2625fcd)
 
 # Autocorrelation
-![image](https://github.com/user-attachments/assets/8fc25cb3-68a5-469f-8da1-e5860df861f2)
+![download](https://github.com/user-attachments/assets/399c5815-335a-4fed-addb-2bd7c9697833)
 
-# SIMULATED ARMA(2,2) PROCESS:
-![image](https://github.com/user-attachments/assets/ac7dfb18-7fa2-4a45-b031-091867f6af38)
+# SARIMAX Results:
+![image](https://github.com/user-attachments/assets/ba86c69c-9e5b-4014-aee9-62f1107a594a)
 
-# Partial Autocorrelation
-![image](https://github.com/user-attachments/assets/0cfef4cf-cfa0-438b-ba56-4f6b564e4b68)
-
-# Autocorrelation
-![image](https://github.com/user-attachments/assets/1c740a47-cec5-409d-ad25-ac728ec78d3f)
-
+# Original vs Fitted Value:
+![download](https://github.com/user-attachments/assets/8589b6c2-0eee-4c8b-a232-a3bedf9d4526)
 
 ### RESULT:
 Thus, the python program is created to fit ARMA Model successfully.
