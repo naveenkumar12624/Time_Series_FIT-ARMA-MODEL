@@ -3,10 +3,10 @@
 ### Name: Naveen Kumar S
 ### Reg No: 212221240033
 
-### AIM:
+## AIM:
 To implement ARMA model in python.
 
-### ALGORITHM:
+## ALGORITHM:
 Step 1: Load and prepare the NVIDIA stock prices time series data into a variable.
 
 Step 2: Plot the time series data using Matplotlib with appropriate titles and labels.
@@ -17,7 +17,7 @@ Step 4: Fit an ARMA model to the time series data using the specified order (p, 
 
 Step 5: Visualize the original time series data alongside the fitted values from the ARMA model in a new plot.
 
-### PROGRAM:
+## PROGRAM:
 ```python
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
@@ -77,19 +77,19 @@ plt.show()
 ```
 
 
-### OUTPUT:
+## OUTPUT:
 
-# Partial Autocorrelation
+### Partial Autocorrelation
 <img src="https://github.com/user-attachments/assets/9801a160-399d-4209-96a7-a739d2625fcd" width ="500">
 
-# Autocorrelation
+### Autocorrelation
 <img src="https://github.com/user-attachments/assets/399c5815-335a-4fed-addb-2bd7c9697833" width ="500">
 
-# SARIMAX Results:
+### SARIMAX Results:
 <img src="https://github.com/user-attachments/assets/ba86c69c-9e5b-4014-aee9-62f1107a594a" width="400">
 
-# Original vs Fitted Value:
+### Original vs Fitted Value:
 <img src="https://github.com/user-attachments/assets/8589b6c2-0eee-4c8b-a232-a3bedf9d4526" width ="500">
 
-### RESULT:
+## RESULT:
 Thus, the python program is created to fit ARMA Model successfully.
