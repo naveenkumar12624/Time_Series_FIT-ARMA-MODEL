@@ -80,16 +80,16 @@ plt.show()
 ### OUTPUT:
 
 # Partial Autocorrelation
-![download](https://github.com/user-attachments/assets/9801a160-399d-4209-96a7-a739d2625fcd)
+<img src="https://github.com/user-attachments/assets/9801a160-399d-4209-96a7-a739d2625fcd" width ="500">
 
 # Autocorrelation
-![download](https://github.com/user-attachments/assets/399c5815-335a-4fed-addb-2bd7c9697833)
+<img src="https://github.com/user-attachments/assets/399c5815-335a-4fed-addb-2bd7c9697833" width ="500">
 
 # SARIMAX Results:
-![image](https://github.com/user-attachments/assets/ba86c69c-9e5b-4014-aee9-62f1107a594a)
+<img src="https://github.com/user-attachments/assets/ba86c69c-9e5b-4014-aee9-62f1107a594a" width="400">
 
 # Original vs Fitted Value:
-![download](https://github.com/user-attachments/assets/8589b6c2-0eee-4c8b-a232-a3bedf9d4526)
+<img src="https://github.com/user-attachments/assets/8589b6c2-0eee-4c8b-a232-a3bedf9d4526" width ="500">
 
 ### RESULT:
 Thus, the python program is created to fit ARMA Model successfully.
